@@ -1,4 +1,4 @@
-let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
+let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     let mentioned = message.mentions.users.first()
     if (mentioned) {
         if (Math.random() > 0.5) response = " you have hit " + mentioned + " with a snowball"
@@ -7,7 +7,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
         message.reply(response)
     }
 }
-modules.exports = {
+exports = {
     name: "snowball",
     descr: "hit or miss someone with a snowball",
     run: run

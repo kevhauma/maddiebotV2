@@ -1,9 +1,9 @@
-let config = require("../config.json")
+let config = require("../data/config.json")
 let eightballresponses = config.eightballresponses
 let questionWordsResponses = config.questionWordsReponses
 let questionWords = ["why", "where", "how", "what", "when", "who"]
 
-let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
+let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     let questionword = ""
     let isQ = false
     let isYesNo = true
@@ -89,7 +89,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
 
 
 
-modules.exports = {
+exports = {
     name: "ask",
     descr: "answers questions",
     run: run

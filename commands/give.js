@@ -1,15 +1,15 @@
 let changeCurrency = require("../functions/changecurrency")
 let findMember = require("../functions/findMember")
-let config = require("../config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
+let config = require("../data/config.json")
+let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     if (!message.mentions.users.first()) {
         message.reply("You can't give penguins to no one. Please tag someone.")
         return
     }
     let gifterU = message.author
-    let gifter = findMember(gifterU,currencyMembers)
+    let gifter = findMember(gifterU, currencyMembers)
     let gifteeU = message.mentions.users.first()
-    let giftee = findMember(gifteeU,currencyMembers)
+    let giftee = findMember(gifteeU, currencyMembers)
     let amount = 0
     for (let i = 0; i < config.modroles.length; i++) {
         let role = message.guild.roles.find("name", config.modroles[i])
@@ -32,7 +32,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
     }
 }
 
-modules.exports ={
+exports = {
     name: "give",
     descr: "give your " + config.currency + " away!",
     run: run

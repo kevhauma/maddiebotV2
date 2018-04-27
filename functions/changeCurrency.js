@@ -1,4 +1,4 @@
-modules.exports = function (memberC, AddOrSub, amount) {
+exports = function (memberC, AddOrSub, amount) {
     amount = Math.abs(amount)
     if (AddOrSub === "add") {
         memberC.currency.points += amount

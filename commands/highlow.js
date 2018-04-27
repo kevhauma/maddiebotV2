@@ -1,95 +1,95 @@
 let activeHLGames = []
-let config = require("../config.json")
+let config = require("../data/config.json")
 let cardLinks = config.cards
-class HighLow {
-    constructor(creator, bet) {
-        this.creator = {
-            name: creator.name,
-            color: creator.color,
-            id: creator.id
+
+let run = function (client, message, words, currencyMembers, axios, cleverbot) {
+
+    class HighLow {
+        constructor(creator, bet) {
+            this.creator = {
+                name: creator.name,
+                color: creator.color,
+                id: creator.id
+            }
+            this.remainingCards = []
+            for (let i = 0; i < cardLinks.length; i++) {
+                for (let j = 0; j < cardLinks[i].length; j++) {
+                    this.remainingCards.push(new Card(j + 1, cardLinks[i][j]))
+                }
+            }
+            this.previousCard = {}
+            this.multiplier = 0
+            this.bet = bet
+
         }
-        this.remainingCards = []
-        for (let i = 0; i < cardLinks.length; i++) {
-            for (let j = 0; j < cardLinks[i].length; j++) {
-                this.remainingCards.push(new Card(j + 1, cardLinks[i][j]))
+        getCard() {
+            let card = this.remainingCards[Math.floor(Math.random() * this.remainingCards.length)]
+            const index = this.remainingCards.indexOf(card);
+            if (index !== -1) {
+                this.remainingCards.splice(index, 1);
+            }
+            this.previousCard = card
+            return card
+        }
+        checkGame(highlow) {
+            let prevCard = this.previousCard
+            let newCard = this.getCard()
+            if (this.remainingCards.length == 0) return 0
+            if (newCard.getValue() == prevCard.getValue()) {
+                return 1
+            }
+            if (highlow === "high") {
+                if (newCard.getValue() > prevCard.getValue()) {
+                    this.multiplier = this.multiplier + 0.5
+                    return 1
+                } else return 0
+
+            } else if (highlow === "low") {
+                if (newCard.getValue() < prevCard.getValue()) {
+                    this.multiplier = this.multiplier + 0.5
+                    return 1
+                } else return 0
+
             }
         }
-        this.previousCard = {}
-        this.multiplier = 0
-        this.bet = bet
-
-    }
-    getCard() {
-        let card = this.remainingCards[Math.floor(Math.random() * this.remainingCards.length)]
-        const index = this.remainingCards.indexOf(card);
-        if (index !== -1) {
-            this.remainingCards.splice(index, 1);
+        getname() {
+            return this.creator.name
         }
-        this.previousCard = card
-        return card
-    }
-    checkGame(highlow) {
-        let prevCard = this.previousCard
-        let newCard = this.getCard()
-        if (this.remainingCards.length == 0) return 0
-        if (newCard.getValue() == prevCard.getValue()) {
-            return 1
+        getid() {
+            return this.creator.id
         }
-        if (highlow === "high") {
-            if (newCard.getValue() > prevCard.getValue()) {
-                this.multiplier = this.multiplier + 0.5
-                return 1
-            } else return 0
 
-        } else if (highlow === "low") {
-            if (newCard.getValue() < prevCard.getValue()) {
-                this.multiplier = this.multiplier + 0.5
-                return 1
-            } else return 0
-
+        stop() {
+            const index = activeHLGames.indexOf(this);
+            if (index !== -1) {
+                activeHLGames.splice(index, 1);
+            }
         }
-    }
-    getname() {
-        return this.creator.name
-    }
-    getid() {
-        return this.creator.id
-    }
+        getEmbed() {
+            let embed = new Discord.RichEmbed()
+                .setTitle(this.creator.name)
+                .setColor(this.creator.color)
+                .setDescription("``` HIGHER OR LOWER```")
+                .addField("Bet:", this.bet, true)
+                .addField("Multiplier:", this.multiplier, true)
+                .setImage(this.previousCard.getImg())
+                .setFooter("click up for higher and down for lower")
+            return embed
+        }
 
-    stop() {
-        const index = activeHLGames.indexOf(this);
-        if (index !== -1) {
-            activeHLGames.splice(index, 1);
+    }
+    class Card {
+        constructor(value, img) {
+            this.value = value
+            this.img = img
+        }
+        getValue() {
+            return this.value
+        }
+        getImg() {
+            return this.img
         }
     }
-    getEmbed() {
-        let embed = new Discord.RichEmbed()
-            .setTitle(this.creator.name)
-            .setColor(this.creator.color)
-            .setDescription("``` HIGHER OR LOWER```")
-            .addField("Bet:", this.bet, true)
-            .addField("Multiplier:", this.multiplier, true)
-            .setImage(this.previousCard.getImg())
-            .setFooter("click up for higher and down for lower")
-        return embed
-    }
-
-}
-class Card {
-    constructor(value, img) {
-        this.value = value
-        this.img = img
-    }
-    getValue() {
-        return this.value
-    }
-    getImg() {
-        return this.img
-    }
-}
-
-let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
-    let words = message.content.split(" ")
     let bet = 0
     asker = findMember(message.member.user, currencyMembers)
     if (words[1]) {
@@ -196,7 +196,7 @@ let check = function (reaction, user) {
     }
 }
 
-modules.exports = {
+exports = {
     name: "highlow",
     descr: "play a card game of high-low",
     run: run,

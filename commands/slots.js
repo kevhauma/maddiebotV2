@@ -1,8 +1,8 @@
 let changeCurrency = require("../functions/changecurrency")
 let findMember = require("../functions/findMember")
-let config = require("../config.json")
+let config = require("../data/config.json")
 
-let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
+let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     member = message.member
     let emotes = member.guild.emojis.array()
     let response = ""
@@ -86,7 +86,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
         embed
     })
 }
-modules.exports = {
+exports = {
     name: "slots",
     descr: "slots game!",
     run: run

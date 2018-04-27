@@ -1,8 +1,6 @@
-let config = require("../config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
+let config = require("../data/config.json")
+let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     if (message.channel.name != "bot_spam") return
-    if (!message.content.startsWith("!iam")) return
-    let words = message.content.split(" ")
     let command = words[0] //first word
     let role
     let roleExists = false
@@ -58,7 +56,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
 
 
 
-modules.exports = {
+exports = {
     name: "iam",
     descr: "gives roles for hidden channels",
     run: run

@@ -1,5 +1,5 @@
 let config = require("../config.json")
-modules.exports = function (message, axios) {
+exports = function (message, axios) {
     if (message.channel.name != "shameless_promotion") return
     let words = message.content.split(" ")
     let member = message.member

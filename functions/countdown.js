@@ -114,4 +114,4 @@ let ex = {
         }
     }
 }
-modules.export = ex.setTime
+exports = ex.setTime

@@ -1,7 +1,5 @@
-let config = require("../config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
-    if (!message.content.startsWith("!")) return
-    let words = message.content.split(" ")
+let config = require("../data/config.json")
+let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     let command = words[0]
     let timeouttime = 10
     let isMod = false
@@ -56,7 +54,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
             })
     }
 }
-modules.exports = {
+exports = {
     name: "timeout",
     descr: "timesout someone (mod-only)",
     run: run

@@ -1,5 +1,5 @@
-let config = require("../config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
+let config = require("../data/config.json")
+let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     currencyMembers.sort((a, b) => {
         return a.currency.points - a.currency.points
     })
@@ -43,7 +43,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
         embed
     })
 }
-modules.exports = {
+exports = {
     name: "stats",
     descr: "gives stats in the server",
     run: run

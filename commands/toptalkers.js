@@ -1,4 +1,4 @@
-let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
+let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     currencyMembers.sort((a, b) => {
         return b.stats.messagecount - a.stats.messagecount
     })
@@ -14,7 +14,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
         embed
     })
 }
-modules.exports = {
+exports = {
     name: "toptalkers",
     descr: "gives top 10 of sent messages",
     run: run

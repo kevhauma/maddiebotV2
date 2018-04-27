@@ -1,5 +1,5 @@
-writecounter =0
-modules.export = function write(file,array) {
+let writecounter = 0
+exports = function write(file, array, fs, JSONStream) {
     if (writecounter > 10) {
         try {
             let transformStream = JSONStream.stringify()

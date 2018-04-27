@@ -1,7 +1,6 @@
-let config = require("../config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
+let config = require("../data/config.json")
+let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     if (message.channel.name != "bot_spam") return
-    let words = message.content.split(" ")
     let member = message.member
     let user = message.author
     let command = words[0]
@@ -58,7 +57,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
     }
 }
 
-modules.exports = {
+exports = {
     name: "color",
     descr: "gives color to people with required rank",
     run: run

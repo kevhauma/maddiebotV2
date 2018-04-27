@@ -1,12 +1,12 @@
 let changeCurrency = require("../functions/changecurrency")
 let findMember = require("../functions/findMember")
-let config = require("../config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
+let config = require("../data/config.json")
+let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     if (!words[1]) {
         message.reply("you can't gamble 0 " + config.currency)
         return
     }
-    let asker = findMember(message.member,currencyMembers)
+    let asker = findMember(message.member, currencyMembers)
     if (!isNaN(words[1])) {
         gambleAmount = parseInt(words[1])
         asker = changeCurrency(asker, "sub", gambleAmount)
@@ -34,7 +34,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
     }
 }
 
-modules.exports ={
+exports = {
     name: "gamble",
     descr: "gamble your " + config.currency + " away!",
     run: run

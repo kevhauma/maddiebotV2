@@ -1,8 +1,8 @@
 let findMember = require("../functions/findMember")
 let changeCurrency = require("../functions/changeCurrency")
 let activeHangmanGames = []
-let hangmanWords = require("./words.json")
-let config = require("../config.json")
+let hangmanWords = require("../data/words.json")
+let config = require("../data/config.json")
 
 let emojiAlphabet = config.hangman.emojiAlphabet
 let alphabet = config.hangman.alphabet
@@ -109,7 +109,7 @@ class Hangman {
 }
 
 
-let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
+let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     let game = findHMgame(message.member.displayName)
     if (game) {
         game.stop()
@@ -124,7 +124,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
         name: message.member.displayName,
         color: message.member.displayColor
     }))
-    let game = findHMgame(message.member.displayName)
+    game = findHMgame(message.member.displayName)
     let embed = game.getEmbed()
     message.channel.send({
         embed
@@ -224,7 +224,7 @@ let check = function (reaction, user) {
     }
 }
 
-modules.exports = {
+exports = {
     name: "hangman",
     descr: "play a game of hangman",
     run: run,

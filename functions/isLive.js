@@ -1,4 +1,4 @@
-modules.export = function (oldMember, newMember) {
+exports = function (oldMember, newMember) {
     if (!intervalSet) {
         checkLive(newMember)
         setInterval(checkLive, 900000, newMember)

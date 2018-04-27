@@ -1,5 +1,4 @@
-modules.exports = function (lessage) {
-    if (message.channel.name != "penguin_nest") return
+exports = function (message) {
     let words = message.content.split(" ")
 
     words.forEach(function (word) {
