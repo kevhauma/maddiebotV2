@@ -4,12 +4,18 @@ const axios = require('axios')
 let fs = require("fs")
 let JSONStream = require("JSONStream")
 let he = require('he');
-const config = require("./data/config.json")
-var currencyMembers = require("./data/members.json")
+let cleverbot = require('cleverbot-node');
 
+
+const config = require("./data/config.json")
+let currencyMembers = require("./data/members.json")
 let membersfile = "/data/members.json"
 const client = new Discord.Client()
-var file = "/members.json"
+cleverbot = new Cleverbot;
+cleverbot.configure({
+    botapi: config.clevertoken
+});
+
 
 //loading functions
 var react = require("./functions/reacting")
@@ -76,6 +82,9 @@ client.on('message', function (message) {
         }
     }
 
+    //for art channels
+    if (config.channelList.includes(message.channel.name))
+        pictureReact(message)
 
     write(membersFile, currencyMembers, fs, JSONStream)
 

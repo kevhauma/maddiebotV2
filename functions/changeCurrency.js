@@ -6,8 +6,10 @@ module.exports = function (memberC, AddOrSub, amount) {
             memberC.stats.maxpoints = memberC.currency.points
     } else
     if (AddOrSub === "sub") {
-        if ((memberC.currency.points - amount) >= 0)
+        if ((memberC.currency.points - amount) >= 0) {
             memberC.currency.points -= amount
+            return true
+        }
     }
     return memberC
 }

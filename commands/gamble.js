@@ -2,6 +2,7 @@ let changeCurrency = require("../functions/changecurrency")
 let findMember = require("../functions/findMember")
 let config = require("../data/config.json")
 let run = function (client, message, words, currencyMembers, axios, cleverbot) {
+    let allowed
     if (!words[1]) {
         message.reply("you can't gamble 0 " + config.currency)
         return

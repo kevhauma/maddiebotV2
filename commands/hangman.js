@@ -190,7 +190,7 @@ let check = function (reaction, user) {
         let embed = game.getEmbed()
         let gain = game.gethangword().length * 10
         member = findMember(user, currencyMembers)
-        member = changeCurrency(member, "add", gain)
+        changeCurrency(member, "add", gain)
         member.stats.hangman.gamesWon = member.stats.hangman.gamesWon + 1
         embed.setDescription("``` you have won this game. Congratulations!```\n you have won " + gain + " " + config.currency + "!")
         reaction.message.edit({

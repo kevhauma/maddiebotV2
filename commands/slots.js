@@ -11,14 +11,15 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     let slots = new Array()
     let slotemotes = new Array()
     let Aemotes = new Array()
+    let isAllowed = false
     asker = findMember(member, currencyMembers)
     if (!isNaN(words[1])) {
         gambleAmount = parseInt(words[1])
-        asker = changeCurrency(asker, "sub", gambleAmount)
+        isAllowed = changeCurrency(asker, "sub", gambleAmount)
     } else
     if (words[1] === "all") {
         gambleAmount = asker.currency.points
-        asker = changeCurrency(asker, "sub", gambleAmount)
+        isAllowed = changeCurrency(asker, "sub", gambleAmount)
     } else
         return
     if (!isAllowed) {

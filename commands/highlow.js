@@ -91,15 +91,16 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
         }
     }
     let bet = 0
+    let isAllowed = false
     asker = findMember(message.member.user, currencyMembers)
     if (words[1]) {
         if (!isNaN(words[1])) {
             bet = parseInt(words[1])
-            asker = changeCurrency(asker, "sub", bet)
+            isAllowed = changeCurrency(asker, "sub", bet)
         } else
         if (words[1] === "all") {
             bet = asker.currency.points
-            asker = changeCurrency(asker, "sub", bet)
+            isAllowed = changeCurrency(asker, "sub", bet)
         } else
             return
         if (!isAllowed) {

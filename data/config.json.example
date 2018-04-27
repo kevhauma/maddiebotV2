@@ -2,6 +2,7 @@
     "twitchchannel": "twitchchannel",
     "token": "discorbot token",
     "clientid": "twitch API token",
+    "clevertoken": "cleverbot API token",
     "emojisList": ["316638898229084170", "317387863312564224", "317046214682083338", "😍", "👌", "👍", "❤", "💓", "🖤", "💗", "💟", "💘", "💜", "💞", "💖", "💕", "💛", "😻"], //emojis to react to shared art
     "channelList": ["share_your_own_art", "work_in_progress", "inktober", "goddess_and_mythology"], //art channels
     "saroles": ["anime", "gamer", "nerd", "cook", "sport", "groot", "traveler"], // Self-Assignable Roles

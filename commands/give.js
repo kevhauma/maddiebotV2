@@ -6,6 +6,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
         message.reply("You can't give penguins to no one. Please tag someone.")
         return
     }
+    let isAllowed = false
     let gifterU = message.author
     let gifter = findMember(gifterU, currencyMembers)
     let gifteeU = message.mentions.users.first()
@@ -20,7 +21,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     if (!isNaN(words[2])) {
         amount = parseInt(words[2])
         if (!isMod) {
-            gifter = changeCurrency(gifter, "sub", amount)
+            isAllowed = changeCurrency(gifter, "sub", amount)
         }
     } else return
     if (!isAllowed) {
