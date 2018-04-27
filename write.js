@@ -1,11 +1,11 @@
 let writecounter = 0
 module.exports = function (file, array, fs, JSONStream) {
-    if (writecounter > 10) {
+    if (writecounter > 5) {
         try {
             let transformStream = JSONStream.stringify()
-            let outputStream = fileSystem.createWriteStream(__dirname + file)
+            let outputStream = fs.createWriteStream(__dirname + file)
             transformStream.pipe(outputStream)
-            currencyMembers.forEach(transformStream.write)
+            array.forEach(transformStream.write)
             transformStream.end()
             outputStream.on(
                 "finish",
@@ -17,7 +17,7 @@ module.exports = function (file, array, fs, JSONStream) {
                 "finish",
                 function handleFinish() {
                     let transformStream = JSONStream.parse("*")
-                    let inputStream = fileSystem.createReadStream(__dirname + file)
+                    let inputStream = fs.createReadStream(__dirname + file)
                     inputStream
                         .pipe(transformStream)
                         .on(
@@ -36,9 +36,11 @@ module.exports = function (file, array, fs, JSONStream) {
                 }
             )
         } catch (err) {
-            console.log("writing went wrong")
+            console.log(err)
         }
+
         writecounter = 0
     }
+    console.log("writing: " + writecounter)
     writecounter++
 }

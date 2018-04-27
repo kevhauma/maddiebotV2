@@ -2,8 +2,8 @@ let changeCurrency = require("../functions/changecurrency")
 let findMember = require("../functions/findMember")
 let config = require("../data/config.json")
 
-let run = function (client, message, words, currencyMembers, axios, cleverbot) {
-    member = message.member
+let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot) {
+    let member = message.member
     let emotes = member.guild.emojis.array()
     let response = ""
     let gambleAmount = 0,
@@ -12,7 +12,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     let slotemotes = new Array()
     let Aemotes = new Array()
     let isAllowed = false
-    asker = findMember(member, currencyMembers)
+    let asker = findMember(message.author, currencyMembers)
     if (!isNaN(words[1])) {
         gambleAmount = parseInt(words[1])
         isAllowed = changeCurrency(asker, "sub", gambleAmount)

@@ -1,8 +1,7 @@
 let config = require("../data/config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) {
-    currencyMembers.sort((a, b) => {
-        b.stats.messagecount - a.stats.messagecount
-    })
+let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot) {
+    currencyMembers.sort(comp)
+    let member = message.member
     let embed = new Discord.RichEmbed()
         .setTitle("🐧 LEADERBOARD 🐧")
         .setDescription("```All the feathers!```")
@@ -14,6 +13,10 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     message.channel.send({
         embed
     })
+
+    function comp(a, b) {
+        b.currency.points - a.currency.points
+    }
 }
 module.exports = {
     name: "leaderboard",

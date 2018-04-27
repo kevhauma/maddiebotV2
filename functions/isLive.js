@@ -1,5 +1,5 @@
 let intervalSet = false
-module.exports = function (oldMember, newMember) {
+module.exports = function (oldMember, newMember, client) {
     if (!intervalSet) {
         checkLive(newMember)
         setInterval(checkLive, 900000, newMember)
@@ -64,6 +64,7 @@ module.exports = function (oldMember, newMember) {
     }
 
     function started(newMember, byPresence) {
+        if (newMember.author.id === client.user.id) return
         console.log(newMember.displayName)
 
         let streamingRole = newMember.guild.roles.find("name", "Is Live")

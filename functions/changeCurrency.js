@@ -9,7 +9,7 @@ module.exports = function (memberC, AddOrSub, amount) {
         if ((memberC.currency.points - amount) >= 0) {
             memberC.currency.points -= amount
             return true
-        }
+        } else return false
     }
     return memberC
 }

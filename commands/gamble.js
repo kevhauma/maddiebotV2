@@ -1,8 +1,8 @@
 let changeCurrency = require("../functions/changecurrency")
 let findMember = require("../functions/findMember")
 let config = require("../data/config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) {
-    let allowed
+let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot) {
+    let isAllowed
     if (!words[1]) {
         message.reply("you can't gamble 0 " + config.currency)
         return
@@ -10,11 +10,11 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     let asker = findMember(message.member, currencyMembers)
     if (!isNaN(words[1])) {
         gambleAmount = parseInt(words[1])
-        asker = changeCurrency(asker, "sub", gambleAmount)
+        isAllowed = changeCurrency(asker, "sub", gambleAmount)
     } else
     if (words[1] === "all") {
         gambleAmount = asker.currency.points
-        asker = changeCurrency(asker, "sub", gambleAmount)
+        isAllowed = changeCurrency(asker, "sub", gambleAmount)
     } else
         return
     if (!isAllowed) {
@@ -23,7 +23,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     }
     console.log("chance: " + asker.currency.gamechance)
     if (Math.random() * 100 > asker.currency.gamechance) {
-        asker = changeCurrency(message.member, "add", gambleAmount * 2)
+        changeCurrency(message.member, "add", gambleAmount * 2)
         asker.currency.gamechance = 55
         asker.stats.gamblewins = asker.stats.gamblewins + 1
         message.reply("you have won " + gambleAmount + " " + config.currency + ", you now have " + asker.currency.points + " " + config.currency)

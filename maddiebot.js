@@ -4,14 +4,14 @@ const axios = require('axios')
 let fs = require("fs")
 let JSONStream = require("JSONStream")
 let he = require('he');
-let cleverbot = require('cleverbot-node');
+let Cleverbot = require('cleverbot-node');
 
 
 const config = require("./data/config.json")
 let currencyMembers = require("./data/members.json")
-let membersfile = "/data/members.json"
+let membersFile = "/data/members.json"
 const client = new Discord.Client()
-cleverbot = new Cleverbot;
+let cleverbot = new Cleverbot;
 cleverbot.configure({
     botapi: config.clevertoken
 });
@@ -26,7 +26,7 @@ var isLive = require("./functions/isLive")
 var onJoin = require("./functions/onJoin")
 var onLeave = require("./functions/onLeave")
 var pictureReact = require("./functions/pictureReact")
-var write = require("./functions/write")
+var write = require("./write")
 
 //load commands
 let generalCommands = []
@@ -67,7 +67,7 @@ client.on('message', function (message) {
             let words = message.content.split(" ")
             for (let i = 0; i < generalCommands.length; i++) {
                 if (words[0].replace("!", "") == generalCommands[i].name) {
-                    generalCommands[i].run(client, message, words, currencyMembers, axios, cleverbot, he)
+                    generalCommands[i].run(Discord, client, message, words, currencyMembers, axios, cleverbot, he)
                 }
             }
         }
@@ -77,7 +77,7 @@ client.on('message', function (message) {
         let words = message.content.split(" ")
         for (let i = 0; i < spamCommands.length; i++) {
             if (words[0].replace("!", "") == spamCommands[i].name) {
-                spamCommands[i].run(client, message, words, currencyMembers, axios, cleverbot, he)
+                spamCommands[i].run(Discord, client, message, words, currencyMembers, axios, cleverbot, he)
             }
         }
     }
@@ -90,7 +90,7 @@ client.on('message', function (message) {
 
 })
 client.on('presenceUpdate', (oldMember, newMember) => {
-    isLive(oldMember, newMember)
+    isLive(oldMember, newMember, client)
 })
 client.on('guildMemberAdd', member => {
     onJoin(member)
@@ -100,7 +100,7 @@ client.on('guildMemberRemove', member => {
 })
 client.on('messageReactionAdd', (reaction, user) => {
     for (let i = 0; i < reactionCommands.length; i++) {
-        reactionCommands[i].check(reaction, user)
+        reactionCommands[i].check(Discord, client, reaction, user, currencyMembers)
 
     }
 })

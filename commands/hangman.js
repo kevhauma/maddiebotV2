@@ -11,7 +11,7 @@ let forbiddenLetters = config.hangman.forbiddenLetters
 let img = config.hangman.img
 
 
-let run = function (client, message, words, currencyMembers, axios, cleverbot) {
+let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot) {
     class Hangman {
         constructor(creator) {
             this.creator = {
@@ -159,7 +159,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     }
 }
 
-let check = function (reaction, user) {
+let check = function (Discord, client, reaction, user, currencyMembers) {
     if (reaction.message.channel.name !== config.botSpamChat) return
     if (reaction.message.author.id !== client.user.id) return
     if (user.id === client.user.id) return

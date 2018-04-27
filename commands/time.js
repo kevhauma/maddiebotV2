@@ -1,5 +1,5 @@
 let config = require("../data/config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) {
+let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot) {
     let clocks = config.clocks
     let now = new Date()
     let standardTime = now
@@ -21,7 +21,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     const embed = new Discord.RichEmbed()
         .setColor(3447003)
         .setTitle(targetTime.emoji)
-        .setDescription(streamOwner + "'s current time: \n ```⏰ " + targetTime.hour + ":" + targetTime.minutes + targetTime.AM + " ⏰``` ")
+        .setDescription(config.twitchchannel + "'s current time: \n ```⏰ " + targetTime.hour + ":" + targetTime.minutes + targetTime.AM + " ⏰``` ")
     message.channel.send({
         embed
     })

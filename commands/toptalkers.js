@@ -1,7 +1,6 @@
-let run = function (client, message, words, currencyMembers, axios, cleverbot) {
-    currencyMembers.sort((a, b) => {
-        return b.stats.messagecount - a.stats.messagecount
-    })
+let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot) {
+    currencyMembers.sort(comp)
+    let member = message.member
     let embed = new Discord.RichEmbed()
         .setTitle("🐧 TOP CHATTERS 🐧")
         .setDescription("```All the messages!```")
@@ -13,6 +12,10 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     message.channel.send({
         embed
     })
+
+    function comp(a, b) {
+        b.stats.messagecount - a.stats.messagecount
+    }
 }
 module.exports = {
     name: "toptalkers",

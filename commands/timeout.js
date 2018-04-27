@@ -1,5 +1,5 @@
 let config = require("../data/config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) {
+let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot) {
     let command = words[0]
     let timeouttime = 10
     let isMod = false
@@ -12,14 +12,13 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
         }
     }
     if (!isMod) return
-    if (command.charAt(0) !== "!") return
     if (message.mentions.size < 1) return
     if (words.length < 1) return
     if (command !== "!timeout") return
     let timeoutrole = message.guild.roles.find("name", "timeout")
     let modChannel = message.guild.channels.find("name", "mod_logs")
 
-    let mentioned = message.mentions.users.first(1)
+    let mentioned = message.mentions.users.first()
     let mentionedmember = message.guild.members.find('id', mentioned.id)
 
 
@@ -28,7 +27,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
         return
     }
 
-    mentionedmember.addRole(timeoutrole)
+    mentionedmember.addRole(timeoutrole).catch((err) => console.log(err))
 
     if (words.length > 2) timeouttime = words[2]
 

@@ -1,12 +1,13 @@
 let changeCurrency = require("../functions/changecurrency")
 let findMember = require("../functions/findMember")
 let config = require("../data/config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) {
+let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot) {
     if (!message.mentions.users.first()) {
         message.reply("You can't give penguins to no one. Please tag someone.")
         return
     }
-    let isAllowed = false
+    let isMod = false
+    let isAllowed = true
     let gifterU = message.author
     let gifter = findMember(gifterU, currencyMembers)
     let gifteeU = message.mentions.users.first()
@@ -25,10 +26,9 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
         }
     } else return
     if (!isAllowed) {
-        message.reply("not enough " + config.currency + ". You only have " + gifter.currency + " " + config.currency + ": <:FeelsBadMan:316641210548617216>")
+        message.reply("not enough " + config.currency + ". You only have " + gifter.currency.points + " " + config.currency + ": <:FeelsBadMan:316641210548617216>")
     } else {
         giftee = changeCurrency(giftee, "add", amount)
-
         message.channel.send(gifteeU + ", you have received " + amount + " " + config.currency + " from " + gifterU)
     }
 }

@@ -1,8 +1,10 @@
 let activeHLGames = []
 let config = require("../data/config.json")
+let findMember = require("../functions/findmember")
+let changeCurrency = require("../functions/changeCurrency")
 let cardLinks = config.cards
 
-let run = function (client, message, words, currencyMembers, axios, cleverbot) {
+let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot) {
 
     class HighLow {
         constructor(creator, bet) {
@@ -152,7 +154,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
 
 
 
-let check = function (reaction, user) {
+let check = function (Discord, client, reaction, user, currencyMembers) {
     if (reaction.message.channel.name !== config.botSpamChat) return
     if (reaction.message.author.id !== client.user.id) return
     if (user.id === client.user.id) return
@@ -167,7 +169,6 @@ let check = function (reaction, user) {
     if (reaction.emoji.name === "🔻") {
         r = game.checkGame("low")
     }
-    console.log("r: " + r)
     if (r == 1) {
         embed = game.getEmbed()
     } else {

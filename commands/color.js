@@ -1,6 +1,5 @@
 let config = require("../data/config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) {
-    if (message.channel.name != "bot_spam") return
+let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot) {
     let member = message.member
     let user = message.author
     let command = words[0]
@@ -54,6 +53,16 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
                 console.log(error.message)
             })
 
+        function sendEmbed(message, color, sentence, footer) {
+            var embed = new Discord.RichEmbed()
+                .setAuthor(message.member.displayName, message.member.user.displayAvatarURL)
+                .setColor(color)
+                .setDescription(sentence)
+                .setFooter(footer)
+            message.channel.send({
+                embed
+            })
+        }
     }
 }
 

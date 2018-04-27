@@ -4,7 +4,7 @@ const quizData = require("../data/quiz.json")
 
 
 activeQuizGames = []
-let run = function (client, message, words, currencyMembers, axios, cleverbot, he) {
+let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot, he) {
     class Quiz {
         constructor(creator) {
             this.creator = creator
@@ -131,7 +131,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot, h
 }
 
 
-let check = function (reaction, user) {
+let check = function (Discord, client, reaction, user, currencyMembers) {
     if (reaction.message.channel.name !== config.botSpamChat) return
     if (reaction.message.author.id !== client.user.id) return
     if (user.id === client.user.id) return

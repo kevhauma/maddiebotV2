@@ -1,14 +1,14 @@
 let config = require("../data/config.json")
-let run = function (client, message, words, currencyMembers, axios, cleverbot) {
-    currencyMembers.sort((a, b) => {
-        return a.currency.points - a.currency.points
-    })
-    let asker
+let findMember = require("../functions/findmember")
+let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot) {
+    currencyMembers.sort(comp)
+    let member = message.member
+    let asker = findMember(message.author, currencyMembers)
     let mentioned = message.mentions.users.first()
     isMod = false
     if (mentioned) {
-        for (let i = 0; i < modroles.length; i++) {
-            let role = message.guild.roles.find("name", modroles[i])
+        for (let i = 0; i < config.modroles.length; i++) {
+            let role = message.guild.roles.find("name", config.modroles[i])
             if (member.roles.has(role.id)) isMod = true
         }
         if (!isMod) {
@@ -16,7 +16,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
             return
         }
         member = message.mentions.members.first()
-        asker = findMember(mentioned)
+        asker = findMember(mentioned, currencyMembers)
     }
 
     let startDate = new Date(2017, 11, 18, 00, 00, 0, 0)
@@ -42,6 +42,10 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     message.channel.send({
         embed
     })
+
+    function comp(a, b) {
+        b.currency.points - a.currency.points
+    }
 }
 module.exports = {
     name: "stats",

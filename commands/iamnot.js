@@ -19,20 +19,8 @@ let run = function (Discord, client, message, words, currencyMembers, axios, cle
         sendIAMresponse(member + ",This role does not exists.", 16711680)
         return
     }
-    console.log(command)
-    if (command === "!iam") {
-        if (message.member.roles.has(role.id)) {
-            sendIAMresponse(member + ", you already have this role.", 16711680)
-            return
-        }
-        member.addRole(role)
-        console.log('gave ' + message.author.username + " the role: " + words[1])
-        sendIAMresponse(member + ", succesfully added " + role.name + " to you.", 65280)
 
-    }
-    console.log(command)
     if (command === "!iamnot") {
-        console.log('iamnot')
         if (message.member.roles.has(role.id)) {
             member.removeRole(role)
             console.log('removed ' + message.author.username + " the role: " + words[1])
@@ -58,7 +46,7 @@ let run = function (Discord, client, message, words, currencyMembers, axios, cle
 
 
 module.exports = {
-    name: "iam",
+    name: "iamnot",
     spam: true,
     descr: "gives roles for hidden channels",
     run: run
