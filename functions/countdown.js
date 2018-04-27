@@ -1,5 +1,6 @@
 let ex = {
     setTime: function (client) {
+        let interval = 10 * 60 * 1000
         setTimeout(function () {
             let cdChannel = client.guilds.first().channels.get("361841035783176192")
             let today = new Date()

@@ -1,3 +1,4 @@
+let intervalSet = false
 module.exports = function (oldMember, newMember) {
     if (!intervalSet) {
         checkLive(newMember)

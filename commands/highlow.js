@@ -152,7 +152,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
 
 
 let check = function (reaction, user) {
-    if (reaction.message.channel.name !== "bot_spam") return
+    if (reaction.message.channel.name !== config.botSpamChat) return
     if (reaction.message.author.id !== client.user.id) return
     if (user.id === client.user.id) return
     if (!reaction.message.embeds[0]) return
@@ -198,6 +198,7 @@ let check = function (reaction, user) {
 
 module.exports = {
     name: "highlow",
+    spam: true,
     descr: "play a card game of high-low",
     run: run,
     check: check

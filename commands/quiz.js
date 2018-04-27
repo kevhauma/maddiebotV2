@@ -1,7 +1,7 @@
 const config = require("../data/config.json")
 const quizData = require("../data/quiz.json")
 
-var isAllowed = true
+
 
 activeQuizGames = []
 let run = function (client, message, words, currencyMembers, axios, cleverbot, he) {
@@ -75,7 +75,6 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot, h
 
 
     }
-
     var quizF = findQuizgame(message.member.displayName)
     if (quizF) quizF.stop()
 
@@ -133,7 +132,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot, h
 
 
 let check = function (reaction, user) {
-    if (reaction.message.channel.name !== "bot_test") return
+    if (reaction.message.channel.name !== config.botSpamChat) return
     if (reaction.message.author.id !== client.user.id) return
     if (user.id === client.user.id) return
     if (!reaction.message.embeds[0]) return
@@ -265,6 +264,7 @@ let check = function (reaction, user) {
 }
 module.exports = {
     name: "quiz",
+    spam: true,
     descr: "play a game of quiz",
     run: run,
     check: check

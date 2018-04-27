@@ -45,6 +45,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
 }
 module.exports = {
     name: "stats",
+    spam: true,
     descr: "gives stats in the server",
     run: run
 }

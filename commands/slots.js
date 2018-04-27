@@ -88,6 +88,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
 }
 module.exports = {
     name: "slots",
+    spam: true,
     descr: "slots game!",
     run: run
 }

@@ -16,6 +16,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
 }
 module.exports = {
     name: "toptalkers",
+    spam: true,
     descr: "gives top 10 of sent messages",
     run: run
 }

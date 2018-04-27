@@ -59,6 +59,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
 
 module.exports = {
     name: "color",
+    spam: true,
     descr: "gives color to people with required rank",
     run: run
 }
