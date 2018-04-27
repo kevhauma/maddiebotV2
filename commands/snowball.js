@@ -7,3 +7,8 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
         message.reply(response)
     }
 }
+modules.exports = {
+    name: "snowball",
+    descr: "hit or miss someone with a snowball",
+    run: run
+}

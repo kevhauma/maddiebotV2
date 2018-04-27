@@ -1,4 +1,3 @@
-
 let findMember = require("../functions/findMember")
 let changeCurrency = require("../functions/changeCurrency")
 let activeHangmanGames = []
@@ -18,7 +17,7 @@ class Hangman {
         }
         do {
             let includesFL = false
-            this.hangWord = rWord()
+            this.hangWord = hangmanWords[Math.floor(Math.random() * hangmanWords.length)]
             for (let i = 0; i < forbiddenLetters.length; i++) {
                 for (let j = 0; j < this.hangWord.length; j++) {
                     console.log(this.hangWord.charAt(j) + "--" + forbiddenLetters[i])
@@ -115,7 +114,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
     if (game) {
         game.stop()
     }
-    let player = findMember(message.author,currencyMembers)
+    let player = findMember(message.author, currencyMembers)
     if (!player.stats.hangman) player.stats.hangman = {
         gamesPlayed: 0,
         gamesWon: 0
@@ -143,9 +142,24 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
             }, i * 500)
         }
     })
+
+    function findHMgame(name) {
+        for (let i = 0; i < activeHangmanGames.length; i++) {
+            if (activeHangmanGames[i].getname() === name) {
+                return activeHangmanGames[i]
+            }
+        }
+    }
+
+    function getEmote(letter) {
+        let emote
+        for (let i = 0; i < alphabet.length; i++) {
+            if (letter === alphabet[i]) return emojiAlphabet[i]
+        }
+    }
 }
 
-let check =function (reaction, user) {
+let check = function (reaction, user) {
     if (reaction.message.channel.name !== "bot_spam") return
     if (reaction.message.author.id !== client.user.id) return
     if (user.id === client.user.id) return
@@ -175,7 +189,7 @@ let check =function (reaction, user) {
     if (status == 2) {
         let embed = game.getEmbed()
         let gain = game.gethangword().length * 10
-        member = findMember(user,currencyMembers)
+        member = findMember(user, currencyMembers)
         member = changeCurrency(member, "add", gain)
         member.stats.hangman.gamesWon = member.stats.hangman.gamesWon + 1
         embed.setDescription("``` you have won this game. Congratulations!```\n you have won " + gain + " " + config.currency + "!")
@@ -194,40 +208,25 @@ let check =function (reaction, user) {
             console.log(err)
         });
     }
-}
 
-function rWord() {
-    return hangmanWords[Math.floor(Math.random() * hangmanWords.length)]
-}
-
-function findHMgame(name) {
-    for (let i = 0; i < activeHangmanGames.length; i++) {
-        if (activeHangmanGames[i].getname() === name) {
-            return activeHangmanGames[i]
+    function findHMgame(name) {
+        for (let i = 0; i < activeHangmanGames.length; i++) {
+            if (activeHangmanGames[i].getname() === name) {
+                return activeHangmanGames[i]
+            }
         }
     }
-    return null
-}
 
-function getLetter(emote) {
-    for (let i = 0; i < emojiAlphabet.length; i++) {
-        if (emote === emojiAlphabet[i]) return alphabet[i]
+    function getLetter(emote) {
+        for (let i = 0; i < emojiAlphabet.length; i++) {
+            if (emote === emojiAlphabet[i]) return alphabet[i]
+        }
     }
-    return null
 }
 
-function getEmote(letter) {
-    let emote
-    for (let i = 0; i < alphabet.length; i++) {
-        if (letter === alphabet[i]) return emojiAlphabet[i]
-    }
-    return null
-}
-
-
-modules.exports ={
+modules.exports = {
     name: "hangman",
     descr: "play a game of hangman",
     run: run,
-    check:check
+    check: check
 }

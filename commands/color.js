@@ -1,3 +1,4 @@
+let config = require("../config.json")
 let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
     if (message.channel.name != "bot_spam") return
     let words = message.content.split(" ")
@@ -6,10 +7,15 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
     let command = words[0]
     let role
     let roles = message.guild.roles
-    let macaroniPenguin = message.guild.roles.find("name", "Macaroni Penguin")
-    let twitchPenguin = message.guild.roles.find("name", "✪ Twitch Penguin ✪")
+    let ranks = []
+    for (let i = 0; i < config.colorranks.length; i++)
+        ranks.push(message.guild.roles.find("name", config.colorranks[i]))
 
-    if (!member.roles.has(macaroniPenguin.id) && !member.roles.has(twitchPenguin.id)) return
+    let isAllowed = false;
+    for (let i = 0; i < ranks.length; i++) {
+        if (member.roles.has(ranks[i].id)) isAllowed = true
+    }
+    if (!isAllowed) return
     if (!words[1]) return
 
     role = message.guild.roles.find("name", user.username)
@@ -52,8 +58,8 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
     }
 }
 
-modules.exports ={
+modules.exports = {
     name: "color",
-    descr: "gives color to peopple with required rank",
+    descr: "gives color to people with required rank",
     run: run
 }

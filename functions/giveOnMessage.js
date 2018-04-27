@@ -1,6 +1,8 @@
-function giveOnMessage(message) {
+let findMember = require("../findMember")
+let changeCurrency = require("../changeCurrency")
+modules.export = function giveOnMessage(message, currencyMembers) {
     if (!message.author.bot) {
-        let receiver = findMember(message.author)
+        let receiver = findMember(message.author, currencyMembers)
         receiver.stats.messagecount = (receiver.stats.messagecount + 1)
         if (message.channel.name !== "bot_spam") {
 

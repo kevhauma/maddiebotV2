@@ -8,7 +8,6 @@ modules.exports = function (memberC, AddOrSub, amount) {
     if (AddOrSub === "sub") {
         if ((memberC.currency.points - amount) >= 0)
             memberC.currency.points -= amount
-        else isAllowed = false
     }
     return memberC
 }

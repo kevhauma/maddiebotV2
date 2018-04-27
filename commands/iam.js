@@ -44,19 +44,21 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
             return
         }
     }
+
+    function sendIAMresponse(descr, color) {
+        message.channel.send({
+            embed: {
+                color: color,
+                description: descr
+            }
+        })
+    }
+
 }
 
-function sendIAMresponse(descr, color) {
-    message.channel.send({
-        embed: {
-            color: color,
-            description: descr
-        }
-    })
-}
 
 
-modules.exports ={
+modules.exports = {
     name: "iam",
     descr: "gives roles for hidden channels",
     run: run

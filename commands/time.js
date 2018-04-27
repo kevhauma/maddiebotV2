@@ -1,5 +1,5 @@
 let config = require("../config.json")
-let run = function (client, message, words,currencyMembers,axios,cleverbot) => {
+let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
     let clocks = config.clocks
     let now = new Date()
     let standardTime = now
@@ -25,4 +25,9 @@ let run = function (client, message, words,currencyMembers,axios,cleverbot) => {
     message.channel.send({
         embed
     })
+}
+modules.exports = {
+    name: "time",
+    descr: "gives time of owner of the server",
+    run: run
 }

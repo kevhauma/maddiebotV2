@@ -11,7 +11,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
     let slots = new Array()
     let slotemotes = new Array()
     let Aemotes = new Array()
-    asker = findMember(member,currencyMembers)
+    asker = findMember(member, currencyMembers)
     if (!isNaN(words[1])) {
         gambleAmount = parseInt(words[1])
         asker = changeCurrency(asker, "sub", gambleAmount)
@@ -85,4 +85,9 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
     message.channel.send({
         embed
     })
+}
+modules.exports = {
+    name: "slots",
+    descr: "slots game!",
+    run: run
 }

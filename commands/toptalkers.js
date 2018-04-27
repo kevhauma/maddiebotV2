@@ -1,5 +1,7 @@
 let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
-    currencyMembers.sort((a,b)=>{return b.stats.messagecount-a.stats.messagecount})
+    currencyMembers.sort((a, b) => {
+        return b.stats.messagecount - a.stats.messagecount
+    })
     let embed = new Discord.RichEmbed()
         .setTitle("🐧 TOP CHATTERS 🐧")
         .setDescription("```All the messages!```")
@@ -11,4 +13,9 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) =
     message.channel.send({
         embed
     })
+}
+modules.exports = {
+    name: "toptalkers",
+    descr: "gives top 10 of sent messages",
+    run: run
 }

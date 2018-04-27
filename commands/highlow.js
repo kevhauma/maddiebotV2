@@ -1,4 +1,3 @@
-
 let activeHLGames = []
 let config = require("../config.json")
 let cardLinks = config.cards
@@ -89,10 +88,10 @@ class Card {
     }
 }
 
-let run = function (client, message, words,currencyMembers,axios,cleverbot) => {
+let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
     let words = message.content.split(" ")
     let bet = 0
-    asker = findMember(message.member.user,currencyMembers)
+    asker = findMember(message.member.user, currencyMembers)
     if (words[1]) {
         if (!isNaN(words[1])) {
             bet = parseInt(words[1])
@@ -138,16 +137,18 @@ let run = function (client, message, words,currencyMembers,axios,cleverbot) => {
             })
         }, 500)
     })
+
+    function findHLgame(name) {
+        for (let i = 0; i < activeHLGames.length; i++) {
+            if (activeHLGames[i].getname() === name) {
+                return activeHLGames[i]
+            }
+        }
+        return null
+    }
 }
 
-function findHLgame(name) {
-    for (let i = 0; i < activeHLGames.length; i++) {
-        if (activeHLGames[i].getname() === name) {
-            return activeHLGames[i]
-        }
-    }
-    return null
-}
+
 
 
 let check = function (reaction, user) {
@@ -171,7 +172,7 @@ let check = function (reaction, user) {
     } else {
         embed = game.getEmbed()
         embed.setDescription("```you have won " + (game.bet * game.multiplier) + " " + config.currency + "```")
-        let member = findMember(user,currencyMembers)
+        let member = findMember(user, currencyMembers)
         changeCurrency(member, "add", (game.bet * game.multiplier))
         member.stats.highlow.gamesWon = member.stats.highlow.gamesWon + 1
         if (member.stats.highlow.highestMultiplier < game.multiplier) member.stats.highlow.highestMultiplier = game.multiplier
@@ -184,11 +185,20 @@ let check = function (reaction, user) {
     reaction.message.edit({
         embed
     })
+
+    function findHLgame(name) {
+        for (let i = 0; i < activeHLGames.length; i++) {
+            if (activeHLGames[i].getname() === name) {
+                return activeHLGames[i]
+            }
+        }
+        return null
+    }
 }
 
-modules.exports ={
+modules.exports = {
     name: "highlow",
     descr: "play a card game of high-low",
     run: run,
-    check:check
+    check: check
 }

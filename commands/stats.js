@@ -1,6 +1,8 @@
 let config = require("../config.json")
-let run = function (client, message, words,  currencyMembers, axios, cleverbot) => {
-    currencyMembers.sort((a,b)=>{return a.currency.points - a.currency.points})
+let run = function (client, message, words, currencyMembers, axios, cleverbot) => {
+    currencyMembers.sort((a, b) => {
+        return a.currency.points - a.currency.points
+    })
     let asker
     let mentioned = message.mentions.users.first()
     isMod = false
@@ -40,4 +42,9 @@ let run = function (client, message, words,  currencyMembers, axios, cleverbot) 
     message.channel.send({
         embed
     })
+}
+modules.exports = {
+    name: "stats",
+    descr: "gives stats in the server",
+    run: run
 }

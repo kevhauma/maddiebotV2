@@ -1,0 +1,40 @@
+{
+    "twitchchannel": "twitchchannel",
+    "token": "discorbot token",
+    "clientid": "twitch API token",
+    "emojisList": ["316638898229084170", "317387863312564224", "317046214682083338", "😍", "👌", "👍", "❤", "💓", "🖤", "💗", "💟", "💘", "💜", "💞", "💖", "💕", "💛", "😻"], //emojis to react to shared art
+    "channelList": ["share_your_own_art", "work_in_progress", "inktober", "goddess_and_mythology"], //art channels
+    "saroles": ["anime", "gamer", "nerd", "cook", "sport", "groot", "traveler"], // Self-Assignable Roles
+    "modroles": ["Twitch Mods", "Power Penguins", "Penguin Queen"], //moderator roles
+    "colorranks":["Macaroni Penguin","✪ Twitch Penguin ✪"], //ranks for colors
+    "twitchHeader": {
+        "headers": {
+            "client-id": "Twitch API token", //(same as above, need revising)
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    },
+    "questionWords": ["why", "where", "how", "what", "when", "who"],
+    "eightballresponses": ["It is certain", "It is decidedly so", "Without a doubt", "Yes definitely", "You may rely on it", "As I see it yes", "Most likely", "Outlook good", "Yes", "Signs point to yes", "Reply hazy try again", "Ask again later", "Better not tell you now", "Cannot predict now", "Concentrate and ask again", "Don't count on it", "My reply is no", "My sources say no", "Outlook not so good", "Very doubtful", "The answer is behind the corner"],
+    "questionWordsReponses": {
+        "when": ["In an hour?", "Depening on the timezone.", "When pigs fly.", "¯\\_(ツ)_/¯", "Whenever you feel like it.", "At 10PM this sunday."],
+        "where": ["Atlantis.", "Over the hills and far away.", "Somewhere else.", "Somewhere you've never heard of", "Over there", "*points vaguely backwards over his shoulder with his thumb*", "¯\\_(ツ)_/¯", "On the parking lot."],
+        "how": ["With a hammer.", "While jumping on a pogostick", "With a lot of concentration and willpower.", "With his eyes closed.", "¯\\_(ツ)_/¯"],
+        "why": ["Because I said so.", "Because I can.", "Because the earth is round.", "Because five monkeys don't fit in my car. Just kidding i don't own a car.", "Because you should wash your hair once in a while.", "Because you're not my daddy.", "Because why not?", "¯\\_(ツ)_/¯"],
+        "who": ["Your mom.", "Santa!", "Whomever it is, he is out there.", "It was you all along!", "You should take a look in a mirror before asking questions.", "I've heard his name starts with a B", "*looks awkwardly the other way*"],
+        "what": ["Nothing particular.", "I don't know, what about YOU?", "Doing it in the butt."]
+    },
+    "timezone": 1, // your own timezone
+    "targettimezone": -5, //targetted timezone
+    "clocks": ["🕚", "🕐", "🕑", "🕒", "🕓", "🕔", "🕕", "🕖", "🕗", "🕘", "🕙", "🕚", "🕚"],
+    "currency": "feathers", //chat currency
+    "cards": [ //card image link 
+        ["https://i.imgur.com/L153PAB.png", "https://i.imgur.com/dFa7Odn.png", "https://i.imgur.com/vLoWTU1.png", "https://i.imgur.com/UdJ9r6Y.png", "https://i.imgur.com/EW5mUKy.png", "https://i.imgur.com/ueNjAUe.png", "https://i.imgur.com/gNjDyUx.png", "https://i.imgur.com/ErBu5dM.png", "https://i.imgur.com/wpG1TTP.png", "https://i.imgur.com/AwAck4B.png", "https://i.imgur.com/ZN2hXYL.png", "https://i.imgur.com/ISgGXjC.png", "https://i.imgur.com/GufwcNy.png"]
+        ,
+        ["https://i.imgur.com/DukEboO.png", "https://i.imgur.com/FrBPW5J.png", "https://i.imgur.com/ILeFSkh.png", "https://i.imgur.com/TASnAQC.png", "https://i.imgur.com/uWknRBZ.png", "https://i.imgur.com/c3gcWuY.png", "https://i.imgur.com/4813h2n.png", "https://i.imgur.com/ssGn1xc.png", "https://i.imgur.com/iP4q2oq.png", "https://i.imgur.com/NguoASJ.png", "https://i.imgur.com/ocgGONt.png", "https://i.imgur.com/qX4Siur.png", "https://i.imgur.com/3ldkoZ6.png"]
+        ,
+        ["https://i.imgur.com/G8sTG2Z.png", "https://i.imgur.com/IaYso3c.png", "https://i.imgur.com/WvCZD63.png", "https://i.imgur.com/hWbWuzy.png", "https://i.imgur.com/c4Eq0Bh.png", "https://i.imgur.com/uWrznDU.png", "https://i.imgur.com/mZqIcbM.png", "https://i.imgur.com/ynJlDGP.png", "https://i.imgur.com/fc3v7FF.png", "https://i.imgur.com/BG4BOTm.png", "https://i.imgur.com/s2C9jWh.png", "https://i.imgur.com/fFwITf2.png", "https://i.imgur.com/euXhh8G.png"]
+        ,
+        ["https://i.imgur.com/LQKVoBg.png", "https://i.imgur.com/uKpClSO.png", "https://i.imgur.com/2Rnk7WT.png", "https://i.imgur.com/cjWfrXH.png", "https://i.imgur.com/l1rTuXf.png", "https://i.imgur.com/bpdpFJB.png", "https://i.imgur.com/7dIfqgJ.png", "https://i.imgur.com/tjOAJIq.png", "https://i.imgur.com/wjbulpo.png", "https://i.imgur.com/SHjRLfv.png", "https://i.imgur.com/jBQlQKM.png", "https://i.imgur.com/plUOF38.png", "https://i.imgur.com/Dl8xBgN.png"]
+    ]
+
+}
