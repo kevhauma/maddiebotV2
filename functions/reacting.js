@@ -1,4 +1,4 @@
-exports = function (message) {
+module.exports = function (message) {
     let words = message.content.split(" ")
 
     words.forEach(function (word) {

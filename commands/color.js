@@ -57,7 +57,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     }
 }
 
-exports = {
+module.exports = {
     name: "color",
     descr: "gives color to people with required rank",
     run: run

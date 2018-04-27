@@ -14,7 +14,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
         embed
     })
 }
-exports = {
+module.exports = {
     name: "toptalkers",
     descr: "gives top 10 of sent messages",
     run: run

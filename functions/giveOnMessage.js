@@ -1,6 +1,6 @@
 let findMember = require("./findMember")
 let changeCurrency = require("./changeCurrency")
-exports = function giveOnMessage(message, currencyMembers) {
+module.exports = function giveOnMessage(message, currencyMembers) {
     if (!message.author.bot) {
         let receiver = findMember(message.author, currencyMembers)
         receiver.stats.messagecount = (receiver.stats.messagecount + 1)

@@ -89,7 +89,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
 
 
 
-exports = {
+module.exports = {
     name: "ask",
     descr: "answers questions",
     run: run

@@ -196,7 +196,7 @@ let check = function (reaction, user) {
     }
 }
 
-exports = {
+module.exports = {
     name: "highlow",
     descr: "play a card game of high-low",
     run: run,

@@ -43,7 +43,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
         embed
     })
 }
-exports = {
+module.exports = {
     name: "stats",
     descr: "gives stats in the server",
     run: run

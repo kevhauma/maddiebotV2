@@ -25,7 +25,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
 }
 
 
-exports = {
+module.exports = {
     name: config.currency,
     descr: "returns your amount of " + config.currency,
     run: run

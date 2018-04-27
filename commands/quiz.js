@@ -263,7 +263,7 @@ let check = function (reaction, user) {
     }
 
 }
-exports = {
+module.exports = {
     name: "quiz",
     descr: "play a game of quiz",
     run: run,

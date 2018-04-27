@@ -26,7 +26,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
         embed
     })
 }
-exports = {
+module.exports = {
     name: "time",
     descr: "gives time of owner of the server",
     run: run

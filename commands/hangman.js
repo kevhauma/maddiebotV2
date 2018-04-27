@@ -224,7 +224,7 @@ let check = function (reaction, user) {
     }
 }
 
-exports = {
+module.exports = {
     name: "hangman",
     descr: "play a game of hangman",
     run: run,

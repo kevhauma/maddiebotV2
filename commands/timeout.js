@@ -54,7 +54,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
             })
     }
 }
-exports = {
+module.exports = {
     name: "timeout",
     descr: "timesout someone (mod-only)",
     run: run

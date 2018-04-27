@@ -15,7 +15,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
         embed
     })
 }
-exports = {
+module.exports = {
     name: "leaderboard",
     descr: "gives top 10 of feather-owners",
     run: run

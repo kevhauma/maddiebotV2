@@ -56,7 +56,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
 
 
 
-exports = {
+module.exports = {
     name: "iam",
     descr: "gives roles for hidden channels",
     run: run

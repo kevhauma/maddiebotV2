@@ -18,7 +18,7 @@ var onJoin = require("./functions/onJoin")
 var onLeave = require("./functions/onLeave")
 var pictureReact = require("./functions/pictureReact")
 var write = require("./functions/write")
-
+console.log(write)
 
 let commands = [];
 fs.readdir("./commands/", (err, files) => {

@@ -1,4 +1,4 @@
-exports = function (Fuser, currencyMembers) {
+module.exports = function (Fuser, currencyMembers) {
     for (let i = 0; i < currencyMembers.length; i++) {
         if (currencyMembers[i].id === Fuser.id) {
             if (Fuser.username !== currencyMembers[i].name)

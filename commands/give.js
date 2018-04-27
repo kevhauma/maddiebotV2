@@ -32,7 +32,7 @@ let run = function (client, message, words, currencyMembers, axios, cleverbot) {
     }
 }
 
-exports = {
+module.exports = {
     name: "give",
     descr: "give your " + config.currency + " away!",
     run: run
