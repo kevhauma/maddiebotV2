@@ -15,7 +15,7 @@ let run = function (Discord, client, message, words, currencyMembers, axios, cle
     })
 
     function comp(a, b) {
-        b.currency.points - a.currency.points
+        return b.currency.points > a.currency.points ? 1 : -1
     }
 }
 module.exports = {

@@ -23,7 +23,7 @@ let run = function (Discord, client, message, words, currencyMembers, axios, cle
     message.reply(asker.name + " has " + asker.currency.points + " " + config.currency + ". [" + asker.currency.place + "/" + currencyMembers.length + "]")
 
     function comp(a, b) {
-        b.currency.points - a.currency.points
+        return b.currency.points > a.currency.points ? 1 : -1
     }
 }
 

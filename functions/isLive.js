@@ -2,7 +2,7 @@ let intervalSet = false
 module.exports = function (oldMember, newMember, client) {
     if (!intervalSet) {
         checkLive(newMember)
-        setInterval(checkLive, 900000, newMember)
+        setInterval(checkLive, 15 * 60 * 1000, newMember)
         intervalSet = true
     }
 
@@ -26,45 +26,10 @@ module.exports = function (oldMember, newMember, client) {
         }
     }
 
-    function checkLive(member) {
-        let guild = member.guild
-        let members = guild.members
-        let counter
-        let liveRole = guild.roles.find('name', "Is Live")
-        let isLive = true
-        counter = 2
-        for ([key, value] of members) {
-            checkValue(value, counter, isLive, liveRole)
-        }
 
-        function checkValue(value, counter, isLive, liveRole) {
-            if (value.roles.has(liveRole.id)) {
-                if (value.presence.game) {
-                    if (!value.presence.game.url) isLive = false
-                } else isLive = false
-
-                if (!isLive) {
-                    setTimeout(function () {
-                        console.log("stopped by checkup:" + value.displayName)
-                        stopped(value)
-                    }, counter++ * 2000)
-                }
-            }
-            if (!value.roles.has(liveRole.id)) {
-                if (value.presence.game) {
-                    if (value.presence.game.url) {
-                        setTimeout(function () {
-                            console.log("started by checkup:" + value.displayName)
-                            started(value, false)
-                        }, counter++ * 2000)
-                    }
-                }
-            }
-        }
-    }
 
     function started(newMember, byPresence) {
-        if (newMember.author.id === client.user.id) return
+        if (newMember.user.id === client.user.id) return
         console.log(newMember.displayName)
 
         let streamingRole = newMember.guild.roles.find("name", "Is Live")
@@ -109,4 +74,40 @@ module.exports = function (oldMember, newMember, client) {
             })
     }
 
+    function checkLive(member) {
+        let guild = member.guild
+        let members = guild.members
+        let counter
+        let liveRole = guild.roles.find('name', "Is Live")
+        let isLive = true
+        counter = 2
+        for ([key, value] of members) {
+            checkValue(value, counter, isLive, liveRole)
+        }
+
+        function checkValue(value, counter, isLive, liveRole) {
+            if (value.roles.has(liveRole.id)) {
+                if (value.presence.game) {
+                    if (!value.presence.game.url) isLive = false
+                } else isLive = false
+
+                if (!isLive) {
+                    setTimeout(function () {
+                        console.log("stopped by checkup:" + value.displayName)
+                        stopped(value)
+                    }, counter++ * 2000)
+                }
+            }
+            if (!value.roles.has(liveRole.id)) {
+                if (value.presence.game) {
+                    if (value.presence.game.url) {
+                        setTimeout(function () {
+                            console.log("started by checkup:" + value.displayName)
+                            started(value, false)
+                        }, counter++ * 2000)
+                    }
+                }
+            }
+        }
+    }
 }

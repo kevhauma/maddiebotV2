@@ -14,7 +14,7 @@ let run = function (Discord, client, message, words, currencyMembers, axios, cle
     })
 
     function comp(a, b) {
-        b.stats.messagecount - a.stats.messagecount
+        return b.stats.messagecount > a.stats.messagecount ? 1 : -1
     }
 }
 module.exports = {

@@ -53,41 +53,49 @@ client.on('ready', () => {
     countDown(client)
 })
 client.on('message', function (message) {
-    console.log(message.channel.name + '|' + message.author.username + ": " + message.content)
-    giveOnMessage(message, currencyMembers)
+    if (message.channel.type == 'dm') {
+        if (message.author.id !== client.user.id) {
+            cleverbot.write(message.content, response => {
+                message.reply(response.output)
+            })
+        }
+        console.log(message.author.username + " sent something \n \t " + message.content)
+    } else {
+        console.log(message.channel.name + '|' + message.author.username + ": " + message.content)
+        giveOnMessage(message, currencyMembers)
 
-    //functions in general chat
-    if (message.channel.name == config.generalChat) {
-        react(message)
-        dadJoke(client, message)
-    }
-    //commands for bot_spam
-    if (message.channel.name == config.botSpamChat) {
-        if (message.content.startsWith(config.prefix)) {
-            let words = message.content.split(" ")
-            for (let i = 0; i < generalCommands.length; i++) {
-                if (words[0].replace("!", "") == generalCommands[i].name) {
-                    generalCommands[i].run(Discord, client, message, words, currencyMembers, axios, cleverbot, he)
+        //functions in general chat
+        if (message.channel.name == config.generalChat) {
+            react(message)
+            dadJoke(client, message)
+        }
+        //commands for bot_spam
+        if (message.channel.name == config.botSpamChat) {
+            if (message.content.startsWith(config.prefix)) {
+                let words = message.content.split(" ")
+                for (let i = 0; i < generalCommands.length; i++) {
+                    if (words[0].replace("!", "") == generalCommands[i].name) {
+                        generalCommands[i].run(Discord, client, message, words, currencyMembers, axios, cleverbot, he)
+                    }
                 }
             }
         }
-    }
-    //general commands
-    if (message.content.startsWith(config.prefix)) {
-        let words = message.content.split(" ")
-        for (let i = 0; i < spamCommands.length; i++) {
-            if (words[0].replace("!", "") == spamCommands[i].name) {
-                spamCommands[i].run(Discord, client, message, words, currencyMembers, axios, cleverbot, he)
+        //general commands
+        if (message.content.startsWith(config.prefix)) {
+            let words = message.content.split(" ")
+            for (let i = 0; i < spamCommands.length; i++) {
+                if (words[0].replace("!", "") == spamCommands[i].name) {
+                    spamCommands[i].run(Discord, client, message, words, currencyMembers, axios, cleverbot, he)
+                }
             }
         }
+
+        //for art channels
+        if (config.channelList.includes(message.channel.name))
+            pictureReact(message)
+
+        write(membersFile, currencyMembers, fs, JSONStream)
     }
-
-    //for art channels
-    if (config.channelList.includes(message.channel.name))
-        pictureReact(message)
-
-    write(membersFile, currencyMembers, fs, JSONStream)
-
 })
 client.on('presenceUpdate', (oldMember, newMember) => {
     isLive(oldMember, newMember, client)
