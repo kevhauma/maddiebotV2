@@ -1,5 +1,6 @@
     const Discord = require('discord.js');
     const client = new Discord.Client();
+let token = require("../data/config.json")
     var emote = ["🌠", "🌟", "❄", "☃️", "🎆", "🎄", "🎇", "✨", "🎉", "🎊", "✴️"]
     client.on('ready', () => {
         console.log('I am ready!');
@@ -28,4 +29,4 @@
 
 
 
-    client.login("MzE2NjMwMjYzNTQxMTM3NDA4.DAYEdw.J2U6LaLIv4dTemcONU7Z9DEA6SE");
+    client.login(config.token);
