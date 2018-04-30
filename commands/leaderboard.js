@@ -1,4 +1,4 @@
-let config = require("../data/config.json")
+ let config = require("../data/config.json")
 let run = function (Discord, client, message, words, currencyMembers, axios, cleverbot) {
     currencyMembers.sort(comp)
     let member = message.member

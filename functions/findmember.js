@@ -1,15 +1,10 @@
 module.exports = function (Fuser, currencyMembers) {
-    for (let i = 0; i < currencyMembers.length; i++) {
-        if (currencyMembers[i].id === Fuser.id) {
-            if (Fuser.username !== currencyMembers[i].name)
-                currencyMembers[i].name = Fuser.username
-            console.log("found " + currencyMembers[i].name + " | " + currencyMembers[i].currency.place)
-            return currencyMembers[i]
-        }
+    let nUser = currencyMembers.find(x => x.id === Fuser.id)
+    if (nUser) {
+        console.log("found " + currencyMembers[i].name + " | " + currencyMembers[i].currency.place)
+        return nUser
     }
-    console.log("new added")
-    let Nuser = addCurrencyMember(Fuser)
-    return Nuser
+    else return addCurrencyMember(Fuser)
 
     function addCurrencyMember(addU) {
         let Nmember = {
