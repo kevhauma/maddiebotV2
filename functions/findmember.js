@@ -1,9 +1,12 @@
 module.exports = function (Fuser, currencyMembers) {
+    //find user in array with same id
     let nUser = currencyMembers.find(x => x.id === Fuser.id)
-    if (nUser) {
+    if (nUser) { //if the user exists
+        //keep username up to date
+        if (Fuser.username !== nUser.name)nUser.name = Fuser.username
         console.log("found " + currencyMembers[i].name + " | " + currencyMembers[i].currency.place)
         return nUser
-    }
+    }//if user does not exists
     else return addCurrencyMember(Fuser)
 
     function addCurrencyMember(addU) {
